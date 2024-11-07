@@ -5,36 +5,75 @@ body {
 
 #container {
   display: flex;
+  flex-direction: column;
+  justify-self: center;
+
   margin: 25px 0;
 
   height: 600px;
   width: 550px;
-  justify-self: center;
+  padding: 20px 0;
 
   border: 2px solid black;
   border-radius: 12px;
   background-color: grey;
-
-  padding: 20px 0;
-  justify-content: center;
 }
 
 #screen {
   height: 70px;
-  width: 370px;
+  width: 276px;
   border: 1px solid black;
   border-radius: 4px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  align-self: center;
 
   padding: 30px 20px;
-
   background-color: azure;
 }
 
 #screen p {
   font-size: 28px;
   font-weight: 600;
+}
+
+#buttons_container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin: 20px 0;
+}
+
+#btns {
+  display: flex;
+  flex-wrap: wrap;
+  width: 240px;
+  margin: 0 10px;
+}
+
+#btns button {
+  width: 70px;
+  height: 70px;
+  margin: 3px;
+}
+
+#operations {
+  display: flex;
+  flex-direction: column;
+}
+
+#operations > button {
+  font-size: 22px;
+  border-radius: 5px 10px 15px 20px;
+  margin: 1px;
+  width: 50px;
+}
+
+button {
+  border-radius: 10px;
 }
