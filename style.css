@@ -1,78 +1,40 @@
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: wheat;
+  height: 100%;
 }
 
-.calc {
-  height: 470px;
-  width: 300px;
-  border: 1px solid black;
+#container {
+  display: flex;
+  margin: 25px 0;
+
+  height: 600px;
+  width: 550px;
+  justify-self: center;
+
+  border: 2px solid black;
   border-radius: 12px;
-  margin: 250px auto;
-  background: #eeeeee;
+  background-color: grey;
+
+  padding: 20px 0;
+  justify-content: center;
 }
 
+#screen {
+  height: 70px;
+  width: 370px;
+  border: 1px solid black;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
 
-.calc_screen{
-    height: 100px;
-    display: grid;
-    padding: 10px;
-    justify-items: end;
-    align-items: end;
-    margin-bottom: 20px;
-    background-color: rgb(49, 44, 44);
-    border-radius: 12px 12px 0 0;
-    color: white;
-    
+  padding: 30px 20px;
+
+  background-color: azure;
 }
 
-.calc_screen p {
-    font-size: 50px;
+#screen p {
+  font-size: 28px;
+  font-weight: 600;
 }
-
-.buttons{
-    display:grid;
-    grid-template-areas:
-    "ac plus-minus percent division"
-    "seven eight nine multiply"
-    "four five six minus"
-    "one two three plus"
-    "zero zero comma equal";
-    grid-gap: 7px;
-    justify-items: center;
-}
-
-.btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  box-shadow: 6px 6px 16px 0 rgba(209, 205, 199, .5),
-  -6px -6px 16px 0 rgba(209, 205, 199, .5);
-  text-align: center;
-  line-height: 60px;
-  font-size: 20px;
-  cursor: pointer;
-  user-select: none;
-}
-
-.btn.zero{
-    grid-area: zero;
-    width: 100%;
-    border-radius: 20px;
-}
-
-.btn:hover{
-    filter: brightness(120%);
-}
-
-.btn:action{
-    filter: brightness(90%);
-}
-
-.btn.color_grey {
-    color: rgb(134, 130, 130);
-}
-
-.btn.color_red{
-    color: red;
-}
-
