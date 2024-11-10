@@ -22,9 +22,9 @@ button:active {
   flex-direction: column;
   justify-self: center;
 
-  margin: 25px 0;
+  margin: 40px 0;
 
-  height: 400px;
+  height: 450px;
   width: 500px;
   padding: 20px 0;
 
@@ -34,8 +34,8 @@ button:active {
 }
 
 #screen {
-  height: 70px;
-  width: 276px;
+  height: 110px;
+  width: 320px;
   border: 1px solid black;
   border-radius: 4px;
 
@@ -45,8 +45,10 @@ button:active {
   justify-content: center;
   align-self: center;
 
-  padding: 30px 20px;
   background-color: azure;
+
+  margin-left: 12px;
+  padding: 10px 15px;
 }
 
 #operation_box {
@@ -65,7 +67,7 @@ button:active {
   align-items: center;
   justify-content: center;
 
-  margin: 20px 0;
+  margin: 35px 0;
 }
 
 #btns {
