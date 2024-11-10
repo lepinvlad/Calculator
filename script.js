@@ -1,19 +1,12 @@
 const historyLog = document.getElementById("history_log");
 const operationBox = document.getElementById("operation_box");
-const numbers = document.querySelectorAll(".num");
 
 let firstInput = "";
 let secondInput = "";
 let operation = "";
 
-function clear() {
-  historyLog.textContent = operation;
-  operationBox.textContent = "0";
-}
-
-// display numbers on screen
 let isSecondInput = false;
-numbers.forEach((number) => {
+document.querySelectorAll(".num").forEach((number) => {
   number.addEventListener("click", (e) => {
     if (!isSecondInput) {
       firstInput += e.target.textContent;
@@ -25,106 +18,64 @@ numbers.forEach((number) => {
   });
 });
 
-const btnPlus = document.querySelector(".plus");
-btnPlus.addEventListener("click", () => {
-  operation = "+";
-  if (firstInput && secondInput) {
-    calculation(operation);
-  } else {
-    clear();
+let result;
+document.querySelectorAll(".op").forEach((num) => {
+  num.addEventListener("click", (e) => {
+    if (firstInput && secondInput) {
+      result = operations[operation](Number(firstInput), Number(secondInput));
+      historyLog.textContent = `${firstInput} ${operation} ${secondInput} =`;
+      operationBox.textContent = result;
+      firstInput = result;
+      secondInput = "";
+      isSecondInput = false;
+    }
+
+    operation = e.target.textContent;
+    historyLog.textContent = `${firstInput} ${operation} `;
+    operation_box.textContent = "0";
     isSecondInput = true;
+  });
+});
+
+document.querySelector(".equal").addEventListener("click", (e) => {
+  let result = operations[operation](Number(firstInput), Number(secondInput));
+
+  historyLog.textContent = `${firstInput} ${operation} ${secondInput} =`;
+  operation_box.textContent = result;
+  firstInput = result;
+  secondInput = "";
+});
+
+const plus = (a, b) => a + b;
+const minus = (a, b) => a - b;
+const multiply = (a, b) => a * b;
+const division = (a, b) => (b != 0 ? a / b : NaN);
+
+const operations = {
+  "+": plus,
+  "-": minus,
+  X: multiply,
+  "/": division,
+};
+
+document.querySelector(".plus_minus").addEventListener("click", () => {
+  if (firstInput && !secondInput) {
+    firstInput = (Number(firstInput) * -1).toString();
+    operationBox.textContent = firstInput;
+  } else if (isSecondInput) {
+    secondInput = (Number(secondInput) * -1).toString();
+    operationBox.textContent = secondInput;
   }
 });
 
-const btnMinus = document.querySelector(".minus");
-btnMinus.addEventListener("click", () => {
-  operation = "-";
-  clear();
-  isSecondInput = true;
-});
-
-const btnMult = document.querySelector(".multiply");
-btnMult.addEventListener("click", () => {
-  operation = "*";
-  clear();
-  isSecondInput = true;
-});
-
-const btnDivision = document.querySelector(".division");
-btnDivision.addEventListener("click", () => {
-  operation = "/";
-  clear();
-  isSecondInput = true;
-});
-
-const plusMinus = document.querySelector(".plus_minus");
-plusMinus.addEventListener("click", () => {
-  firstInput = changeSign(firstInput);
-  operationBox.textContent = firstInput;
-});
-
-const btnClear = document.querySelector(".clear");
-btnClear.addEventListener("click", () => {
-  clear();
+document.querySelector(".clear").addEventListener("click", () => clear());
+function clear() {
   firstInput = "";
   secondInput = "";
+  operation = "";
   isSecondInput = false;
-});
 
-const btnEqual = document.querySelector(".equal");
-btnEqual.addEventListener("click", () => {
-  calculation(operation);
-});
-
-function calculation(operation) {
-  let result;
-  if (operation == "+") {
-    result = sum(firstInput, secondInput);
-    operationBox.textContent = result;
-    historyLog.textContent = `${firstInput} + ${secondInput} =`;
-    firstInput = result;
-    secondInput = "";
-  } else if (operation == "-") {
-    result = subtraction(firstInput, secondInput);
-    operationBox.textContent = result;
-    historyLog.textContent = `${firstInput} - ${secondInput} =`;
-    firstInput = result;
-    secondInput = "";
-  } else if (operation == "*") {
-    result = multiply(firstInput, secondInput);
-    operationBox.textContent = result;
-    historyLog.textContent = `${firstInput} * ${secondInput} =`;
-    firstInput = result;
-    secondInput = "";
-  } else {
-    result = division(firstInput, secondInput);
-    operationBox.textContent = result;
-    historyLog.textContent = `${firstInput} / ${secondInput} =`;
-    firstInput = result;
-    secondInput = "";
-  }
-}
-
-function sum(firstInput, secondInput) {
-  return parseInt(firstInput) + parseInt(secondInput);
-}
-
-function subtraction(firstInput, secondInput) {
-  return parseInt(firstInput) - parseInt(secondInput);
-}
-
-function multiply(firstInput, secondInput) {
-  return parseInt(firstInput) * parseInt(secondInput);
-}
-
-function division(firstInput, secondInput) {
-  if (secondInput != 0) {
-    return parseInt(firstInput) / parseInt(secondInput);
-  } else {
-    return "ERROR";
-  }
-}
-
-function changeSign(input) {
-  return parseInt(input) * -1;
+  result = 0;
+  operationBox.textContent = "0";
+  historyLog.textContent = "=";
 }
